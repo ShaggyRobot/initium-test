@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <h1 mat-dialog-title class="header">Удаление строк</h1>
+
+  <div mat-dialog-content>
+    <p class="text">Удалить выбранные строки ({{ data.length }})?</p>
+
+    <div mat-dialog-actions align="end" class="controls">
+      <button
+        mat-button
+        rounded
+        color="primary"
+        tabindex="-1"
+        (click)="onCancel()"
+      >
+        Отмена
+      </button>
+
+      <button mat-flat-button rounded color="primary" (click)="onConfirm()">
+        Удалить
+      </button>
+    </div>
+  </div>
+</div>

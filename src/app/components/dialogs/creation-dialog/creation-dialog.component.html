@@ -1,0 +1,60 @@
+<div class="wrapper">
+  <h1 mat-dialog-title class="header">Новый клиент</h1>
+  <div mat-dialog-content>
+    <form
+      [formGroup]="clientForm"
+      (nsSubmit)="onSubmit()"
+      class="form"
+      class="form"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>Имя</mat-label>
+        <input matInput placeholder="Имя" formControlName="name" />
+        <mat-error *ngIf="nameErrors">{{ nameErrors }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Фамилия</mat-label>
+        <input matInput placeholder="Фамилия" formControlName="surname" />
+        <mat-error *ngIf="surnameErrors">{{ surnameErrors }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input
+          matInput
+          placeholder="example@mail.com"
+          formControlName="email"
+        />
+        <mat-error *ngIf="emailErrors">{{ emailErrors }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Телефон</mat-label>
+        <input matInput placeholder="+71112223344" formControlName="phone" />
+        <mat-error *ngIf="phoneErrors">{{ phoneErrors }}</mat-error>
+      </mat-form-field>
+    </form>
+
+    <div mat-dialog-actions align="end" class="actions">
+      <button
+        mat-button
+        rounded
+        color="primary"
+        tabindex="-1"
+        (click)="onCancel()"
+      >
+        Отмена
+      </button>
+      <button
+        mat-flat-button
+        rounded
+        color="primary"
+        (click)="onConfirm()"
+        [disabled]="clientForm.invalid"
+      >
+        Сохранить
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,145 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@use "sass:map";
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #eaf3ff;
+}
+
+* {
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+    margin: 55px 20px 20px 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d7e1ed;
+  }
+}
+
+
+$custom-button-primary: mat.define-palette(mat.$blue-palette, 800);
+$custom-button-accent: mat.define-palette(mat.$blue-gray-palette);
+
+$custom-checkbox-primary: mat.define-palette(mat.$blue-palette, 500);
+$custom-checkbox-accent: mat.define-palette(mat.$blue-gray-palette);
+
+$custom-button-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $custom-button-primary,
+      accent: $custom-button-accent,
+    ),
+  )
+);
+
+$custom-checkbox-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$blue-palette, 500),
+      accent: mat.define-palette(mat.$blue-gray-palette, 500),
+    ),
+  )
+);
+
+.custom-theme {
+  @include mat.button-theme($custom-button-theme);
+  @include mat.checkbox-theme($custom-checkbox-theme);
+}
+
+button[mat-flat-button][rounded],
+button[mat-button][rounded] {
+  font-weight: 300;
+  letter-spacing: 0;
+  padding: 26px 22px;
+  font-size: 18px;
+  border-radius: 37px;
+}
+
+button[mat-button][rounded] {
+  font-weight: 400;
+}
+button[mat-button][rounded]:hover {
+  background-color: mat.get-color-from-palette($custom-button-primary, 50);
+}
+button[mat-button][rounded]:active {
+  background-color: mat.get-color-from-palette($custom-button-accent, 50);
+}
+
+button[mat-flat-button][rounded]:hover {
+  background-color: mat.get-color-from-palette($custom-button-primary, 600);
+}
+
+button[mat-flat-button][rounded]:active {
+  background-color: mat.get-color-from-palette($custom-button-primary, 900);
+}
+
+.mdc-checkbox__ripple {
+  display: none;
+}
+
+.small-icon-button {
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  & > *[role="img"] {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 20px !important;
+    z-index: 1;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      z-index: 100;
+    }
+  }
+
+  .mat-mdc-button-touch-target {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  &:hover .mat-mdc-button-persistent-ripple:before {
+    background-color: mat.get-color-from-palette($custom-button-primary, 600);
+    opacity: 0.15;
+  }
+
+  &:active .mat-mdc-button-persistent-ripple:before {
+    background-color: mat.get-color-from-palette($custom-button-primary, 600);
+    opacity: 0.4;
+  }
+
+  &:disabled {
+    & > *[role="img"] {
+      svg {
+        path {
+          fill: #dadada;
+        }
+      }
+    }
+  }
+}
+
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 20px !important;
+}
